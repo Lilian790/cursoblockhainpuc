@@ -11,15 +11,11 @@ e fecho com asterisco e barra
     
 // se for um comentario barra/barra
     string   public locatario;
-
-//
-
     string public locador; 
-
     uint256 private valor;
+   
 //tudo que pertence ao contrat tem que estar dentro das {}
 //adress = endereço ethereum
-
 
     uint256 constant numeroMaximoLegalDeAluguelParaMulta = 3;
     
@@ -36,10 +32,21 @@ e fecho com asterisco e barra
     }
    
     function simulaMulta (uint256 mesesRestantes,
-        uint256 totalMesesContato)
+        uint256 totalMesesContrato)
         
     public
     view
     returns(uint256 valorMulta) {
-    }     
+            valorMulta = valor*numeroMaximoLegalDeAluguelParaMulta;
+            valorMulta = valorMulta/totalMesesContrato;
+            valorMulta = valorMulta*mesesRestantes;
+            return valorMulta;
+            }
+            
+   function reajustaAluguel(uint256 percentualReajuste) public
+   {
+       uint256 valorDoAcrescimo = 0;
+       valorDoAcrescimo = (( valor*percentualReajuste)/100;
+       valor = valor + valorDoAcrescimo;
+   }
 }
